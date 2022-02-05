@@ -1,0 +1,36 @@
+plugins {
+    id "java"
+}
+
+group "guru.qa.homework"
+version "1.0-SNAPSHOT"
+
+def junitVersion = "5.8.1",
+    ownerVersion = "1.0.4",
+    assertJVersion = "3.19.0",
+    restAssuredVersion = "4.3.1"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation(
+            "org.junit.jupiter:junit-jupiter:$junitVersion",
+            "org.aeonbits.owner:owner:$ownerVersion",
+            "org.assertj:assertj-core:$assertJVersion",
+            "io.rest-assured:rest-assured:$restAssuredVersion",
+    )
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+}
+
+test {
+    useJUnitPlatform()
+    systemProperties(System.getProperties())
+}
+
+compileJava {
+    options.encoding("UTF-8")
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
